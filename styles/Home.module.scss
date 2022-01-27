@@ -1,0 +1,29 @@
+#header {
+  height: 100px;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+
+  p {
+    font-family: "Quicksand", sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+  }
+  .container {
+    display: flex;
+    flex: 1;
+    max-width: 1100px;
+
+    .part {
+      max-width: 50%;
+    }
+  }
+}
