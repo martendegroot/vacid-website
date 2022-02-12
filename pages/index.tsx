@@ -2,8 +2,10 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.scss";
-import logo from "@/images/logo.png";
-import dancingPeople from "@/images/dancing-people.jpg";
+import logo from "@/images/logo2.png";
+import dancingPeople from "@/images/dancing-people2.jpg";
+import Link from "next/link";
+import NavigationCard from "@/components/NavigationCard/NavigationCard";
 
 const Home: NextPage = () => {
   return (
@@ -20,91 +22,67 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header id={styles.header}>header</header>
-
       <main id={styles.main}>
         <div className={styles.container}>
-          <div style={{ width: "58%" }}>
-            <Image
-              src={logo}
-              alt="Picture of the author"
-              width={689}
-              height={242}
-            />
-            <div style={{ margin: "80px 50px" }}>
-              <h2 style={{ marginBottom: 30, color: "#9062CC" }}>
-                Violence and Complaints in Dance
-              </h2>
-              <p>
-                VaCiD is in het leven geroepen om dansen vrij en vooral veilig
-                te maken. Als meldpunt voor grensoverschrijdend gedrag
-                ondersteunen wij in de afhandeling daarvan. Je kunt bij ons of
-                via ons terecht met vragen of meldingen over de danswereld.
-              </p>
-            </div>
-            <div
-              style={{
-                position: "relative",
-                display: "flex",
-                justifyContent: "space-between",
-                marginRight: -120,
-                zIndex: 1,
-              }}
-            >
-              <div
-                style={{
-                  width: 350,
-                  height: 140,
-                  boxShadow: "3px 3px 10px rgba(0,0,0,0.15)",
-                  background: "#fff",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontFamily: "Roboto",
-                  fontSize: 20,
-                  fontWeight: 400,
-                  borderRadius: 5,
-                  paddingRight: 75,
-                }}
-              >
-                <div
-                  style={{ borderBottom: "3px solid rgb(255, 153, 102, 0.5)" }}
-                >
-                  Ik zit ergens mee
-                </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            <div style={{ width: "58%" }}>
+              <Image src={logo} alt="VaCiD logo" width={689} height={242} />
+              <div style={{ margin: "80px 50px" }}>
+                <h2 style={{ marginBottom: 30, color: "#666" }}>
+                  Violence and Complaints in Dance
+                </h2>
+                <p>
+                  VaCiD is in het leven geroepen om dansen vrij en vooral veilig
+                  te maken. Als meldpunt voor grensoverschrijdend kun je bij ons
+                  terecht met vragen over de danswereld. Wij kunnen ondersteunen
+                  in de afhandeling daarvan of je doorverwijzen naar de juiste
+                  instantie.
+                </p>
               </div>
               <div
                 style={{
-                  width: 350,
-                  height: 140,
-                  boxShadow: "3px 3px 10px rgba(0,0,0,0.15)",
-                  background: "#fff",
+                  position: "relative",
                   display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontFamily: "Roboto",
-                  fontSize: 20,
-                  fontWeight: 400,
-                  borderRadius: 5,
-                  paddingRight: 75,
+                  justifyContent: "space-between",
+                  marginRight: -120,
+                  zIndex: 1,
+                  marginBottom: -40,
                 }}
               >
-                <div
-                  style={{ borderBottom: "3px solid rgb(102, 204, 255, 0.5)" }}
-                >
-                  Ik zoek informatie
-                </div>
+                <NavigationCard
+                  path="/hulp"
+                  text="Ik zit ergens mee"
+                  color="orange"
+                />
+                <NavigationCard
+                  path="/hulp"
+                  text="Ik zoek informatie"
+                  color="blue"
+                />
               </div>
             </div>
-          </div>
-          <div style={{ width: "42%" }}>
-            <div style={{ padding: "60px 0 0 40px" }}>
-              <Image
-                src={dancingPeople}
-                alt="Picture of the author"
-                width={750}
-                height={1072}
-              />
+            <div style={{ width: "42%" }}>
+              <div
+                style={{
+                  padding: "60px 0 0 40px",
+                  position: "relative",
+                  height: "100%",
+                }}
+              >
+                <Image
+                  src={dancingPeople}
+                  alt="Picture of the author"
+                  width={1000}
+                  height={667}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
             </div>
           </div>
         </div>
