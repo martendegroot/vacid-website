@@ -1,0 +1,18 @@
+#main {
+  display: flex;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  height: 100vh;
+
+  .container {
+    margin-top: 12vh;
+    display: flex;
+    flex-direction: column;
+    font-weight: normal;
+    max-width: 620px;
+    color: #333;
+    font-family: "Quicksand", sans-serif;
+    font-size: 17px;
+  }
+}

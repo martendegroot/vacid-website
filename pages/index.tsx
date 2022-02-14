@@ -4,7 +4,6 @@ import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 import logo from "@/images/logo2.png";
 import dancingPeople from "@/images/dancing-people2.jpg";
-import Link from "next/link";
 import NavigationCard from "@/components/NavigationCard/NavigationCard";
 
 const Home: NextPage = () => {
