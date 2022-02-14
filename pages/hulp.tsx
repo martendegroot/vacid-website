@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Page.module.scss";
 import axios from "axios";
-import { Form, Button } from "react-bootstrap";
+import { FloatingLabel, Form, Button, Accordion } from "react-bootstrap";
 import QuestionSection from "@/components/QuestionSection/QuestionSection";
 
 const Hulp: NextPage = () => {
@@ -83,12 +83,94 @@ const Hulp: NextPage = () => {
             Omdat je situatie zich kort geleden heeft afgespeeld kunnen
             professionele hulpdiensten jou met voorrang helpen. Als zich een
             heftige gebeurtenis heeft afgespeeld, dan kun je direct met hen
-            contact opnemen. Als het gaat om seksueel overschrijdend gedrag, dan
-            raden wij aan om te rade te gaan bij het Centrum Seksueel Geweld.
-            Zij kunnen geheel vrijblijvend en vertrouwelijk advies leveren bij
-            jouw situatie.
+            contact opnemen. Achteraf horen wij alsnog van je verhaal, zodat we
+            er binnen de danswereld rekening mee kunnen houden.
           </p>
-          <p>Nog meer tekst en uitleg</p>
+          <Accordion style={{ margin: "30px 0" }}>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>
+                Professionele hulp bij seksueel overschrijdend gedrag
+              </Accordion.Header>
+              <Accordion.Body>
+                <p>
+                  Als het gaat om seksueel overschrijdend gedrag, dan raden wij
+                  aan om te rade te gaan bij het Centrum Seksueel Geweld. Zij
+                  kunnen geheel vrijblijvend en vertrouwelijk advies leveren bij
+                  jouw situatie. Ook geven zij op hun website al veel bruikbare
+                  voorlichting om seksueel overschrijdend gedrag beter te kunnen
+                  begrijpen.
+                </p>
+                <p>
+                  <a
+                    href="https://centrumseksueelgeweld.nl/"
+                    rel="noopener noreferrer nofollow"
+                  >
+                    &#8250; Klik hier om naar de website van CSG te gaan
+                  </a>
+                </p>
+                <p>
+                  Twijfel niet in het geval van fysiek seksueel geweld en neem
+                  direct contact op met de politie. Zij hebben een speciale
+                  afdeling, de zedenpolitie, die speciaal is ingericht om je te
+                  ondersteunen.
+                </p>
+                <p>
+                  Je kunt hiervoor de politie bellen op 0900-8844 en vragen naar
+                  de afdeling zedendelicten.
+                </p>
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="1">
+              <Accordion.Header>
+                Neem bij twijfel altijd contact op
+              </Accordion.Header>
+              <Accordion.Body>
+                Slachtoffers blijven vaak met een schuldgevoel zitten na een
+                vervelende situatie. Het is daarom belangrijk voor het
+                verwerkingsproces om er met een vertrouwd persoon over te
+                praten. Je kan altijd bij ons terecht voor een oriënterend
+                gesprek en wij zullen daar van onze kant nooit iets mee doen
+                voordat jij daar toestemming voor geeft.
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="2">
+              <Accordion.Header>
+                Hoe zit het met geheimhouding?
+              </Accordion.Header>
+              <Accordion.Body>
+                <p>
+                  Onze vertrouwenspersonen werken onder geheimhoudingsplicht.
+                  Mocht je het toch fijner vinden om iemand buiten de danswereld
+                  te spreken over gevoelige en persoonlijke gebeurtenissen, dan
+                  kun je ook direct contact opnemen met één van de aangesloten
+                  hulporganisaties.
+                </p>
+                <p>
+                  Wij horen uiteindelijk graag je verhaal, zodat we je ervaring
+                  als signalement kunnen gebruiken om een beter beleid te vormen
+                  in de danswereld. Met jouw melding maken we de dansvloer
+                  veiliger en leuker voor iedereen.
+                </p>
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="3">
+              <Accordion.Header>
+                Kan ik mijn klacht ook anoniem indienen?
+              </Accordion.Header>
+              <Accordion.Body>
+                <p>
+                  Nee. Om zuiver op te kunnen handelen bij misstanden vinden wij
+                  het belangrijk dat dit niet anoniem gebeurt. Dat maakt ons
+                  minder kwetsbaar voor smaad en laster.
+                </p>
+                <p>
+                  Al je gegevens blijven wel ten alle tijde beschermd bij ons.
+                  Dat houdt in dat wij de gegevens over je melding nooit met
+                  derden zullen delen als jij dat niet wil.
+                </p>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
 
           <h4
             style={{
@@ -102,24 +184,41 @@ const Hulp: NextPage = () => {
           >
             Contact opnemen
           </h4>
-          <Form style={{ paddingBottom: 150 }}>
+          <p>
+            Wij staan voor je klaar om je te helpen. Als je contact opneemt met
+            ons dan komt één van onze vertrouwenspersonen binnen 7 dagen bij je
+            terug. Daarna kijken we samen wat de beste vervolgstappen zijn in
+            jouw situatie.
+          </p>
+          <p>
+            Deze informatie blijft altijd van jou. Daarmee bedoelen we jouw
+            verhaal niet naar komt of gedeeld zal worden zonder jouw
+            toestemming. Wij ondernemen dan ook geen actie zonder jou daar eerst
+            in te betrekken.
+          </p>
+          <Form style={{ marginTop: 20, paddingBottom: 150 }}>
             <Form.Group className="mb-3" controlId="formName">
               <Form.Label>Naam</Form.Label>
               <Form.Control type="text" placeholder="Voer je naam in" />
-              <Form.Text className="text-muted">
-                Lees hier waarom wij geen anonieme klachten behandelen
-              </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formEmail">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control type="email" placeholder="Voer je email in" />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
+            <FloatingLabel
+              controlId="floatingTextarea2"
+              label="Bericht"
+              style={{ margin: "30px 0" }}
+            >
+              <Form.Control
+                as="textarea"
+                placeholder="Leave a comment here"
+                style={{ minHeight: 200 }}
+              />
+            </FloatingLabel>
             <Button
-              variant="primary"
+              variant="outline-secondary"
               type="submit"
               onClick={(e) => {
                 axios
@@ -135,7 +234,7 @@ const Hulp: NextPage = () => {
                   });
               }}
             >
-              Submit
+              Bericht versturen
             </Button>
           </Form>
         </div>
