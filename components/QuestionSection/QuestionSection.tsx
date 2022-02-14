@@ -1,11 +1,11 @@
-import { Dispatch } from "react";
+import { Dispatch, SetStateAction } from "react";
 import QuestionCard from "../QuestionCard/QuestionCard";
 
 interface Props {
   question: string;
   options: { name: string; text: string }[];
   selected: string | undefined;
-  setSelected: Dispatch<string | undefined>;
+  setSelected: Dispatch<SetStateAction<string | undefined>>;
 }
 
 const QuestionSection = ({
