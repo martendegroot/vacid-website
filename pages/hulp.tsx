@@ -7,8 +7,8 @@ import { Form, Button } from "react-bootstrap";
 import QuestionSection from "@/components/QuestionSection/QuestionSection";
 
 const Hulp: NextPage = () => {
-  const [subject, setSubject] = React.useState();
-  const [timeframe, setTimeframe] = React.useState();
+  const [subject, setSubject] = React.useState<string | undefined>();
+  const [timeframe, setTimeframe] = React.useState<string | undefined>();
 
   return (
     <div>
