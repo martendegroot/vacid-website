@@ -372,7 +372,7 @@ const AdviceSection = ({ subject, timeframe }: Props) => {
         ))}
       </Accordion>
 
-      <ContactForm show={render} />
+      <ContactForm show={render} includeIntroduction />
     </div>
   );
 };

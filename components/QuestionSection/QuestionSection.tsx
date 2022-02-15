@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import QuestionCard from "../QuestionCard/QuestionCard";
+import styles from "./QuestionSection.module.scss";
 
 interface Props {
   question: string;
@@ -21,14 +22,7 @@ const QuestionSection = ({
   return (
     <>
       <div style={{ fontWeight: "bold" }}>{question}</div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: 20,
-          marginBottom: 60,
-        }}
-      >
+      <div className={styles.wrapper}>
         {options.map((option) => (
           <QuestionCard
             key={option.name}

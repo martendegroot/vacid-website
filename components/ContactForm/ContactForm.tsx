@@ -6,9 +6,10 @@ import styles from "./ContactForm.module.scss";
 
 interface Props {
   show: boolean;
+  includeIntroduction: boolean;
 }
 
-const ContactForm = ({ show }: Props) => {
+const ContactForm = ({ show, includeIntroduction }: Props) => {
   const [render, setRender] = React.useState(false);
 
   React.useEffect(() => {
@@ -37,17 +38,22 @@ const ContactForm = ({ show }: Props) => {
       >
         Contact opnemen
       </h4>
-      <p>
-        Wij staan voor je klaar om je te helpen. Als je contact opneemt met ons
-        dan komt één van onze vertrouwenspersonen binnen 7 dagen bij je terug.
-        Daarna kijken we samen wat de beste vervolgstappen zijn in jouw
-        situatie.
-      </p>
-      <p>
-        Deze informatie blijft altijd van jou. Daarmee bedoelen we jouw verhaal
-        niet naar komt of gedeeld zal worden zonder jouw toestemming. Wij
-        ondernemen dan ook geen actie zonder jou daar eerst in te betrekken.
-      </p>
+      {includeIntroduction && (
+        <>
+          <p>
+            Wij staan voor je klaar om je te helpen. Als je contact opneemt met
+            ons dan komt één van onze vertrouwenspersonen binnen 7 dagen bij je
+            terug. Daarna kijken we samen wat de beste vervolgstappen zijn in
+            jouw situatie.
+          </p>
+          <p>
+            Deze informatie blijft altijd van jou. Daarmee bedoelen we jouw
+            verhaal niet naar komt of gedeeld zal worden zonder jouw
+            toestemming. Wij ondernemen dan ook geen actie zonder jou daar eerst
+            in te betrekken.
+          </p>
+        </>
+      )}
       <Form style={{ marginTop: 20, paddingBottom: 150 }}>
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Naam</Form.Label>
