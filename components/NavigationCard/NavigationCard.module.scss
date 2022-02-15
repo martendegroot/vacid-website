@@ -10,7 +10,7 @@
   font-size: 20px;
   font-weight: 400;
   border-radius: 5px;
-  transition: box-shadow 0.4s;
+  transition: box-shadow 0.4s, background-color 1s;
 
   .text {
     margin-left: 60px;
@@ -45,6 +45,13 @@
   &:hover {
     cursor: pointer;
     box-shadow: 1.5px 1.5px 5px rgba(0, 0, 0, 0.2);
+
+    &.orange {
+      background-color: #fffaf7;
+    }
+    &.blue {
+      background-color: #f7fcff;
+    }
 
     .text {
       &.orange {

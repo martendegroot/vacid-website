@@ -1,0 +1,10 @@
+.render {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 1.5s ease-in-out;
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
+  }
+}

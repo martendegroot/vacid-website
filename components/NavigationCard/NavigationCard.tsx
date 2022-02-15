@@ -10,7 +10,7 @@ interface Props {
 
 const NavigationCard = ({ path, text, color }: Props) => (
   <Link href={path} passHref>
-    <div className={styles.card}>
+    <div className={classnames(styles.card, styles[color])}>
       <div className={classnames(styles.text, styles[color])}>{text}</div>
       <div className={classnames(styles.arrow, styles[color])}>{"›"}</div>
     </div>
