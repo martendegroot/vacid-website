@@ -6,7 +6,7 @@ import styles from "./ContactForm.module.scss";
 
 interface Props {
   show: boolean;
-  includeIntroduction: boolean;
+  includeIntroduction?: boolean;
 }
 
 const ContactForm = ({ show, includeIntroduction }: Props) => {
