@@ -27,8 +27,8 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
     <div className={classNames(styles.render, { [styles.show]: render })}>
       <h4
         style={{
-          marginTop: 45,
-          marginBottom: 30,
+          marginTop: 50,
+          marginBottom: 10,
           marginLeft: -10,
           fontSize: 24,
           fontWeight: 500,
@@ -38,6 +38,14 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
       >
         Contact opnemen
       </h4>
+      <div
+        style={{
+          height: 3,
+          width: "65%",
+          backgroundColor: "rgba(13, 112, 161, 0.2)",
+          marginBottom: 25,
+        }}
+      />
       {includeIntroduction && (
         <>
           <p>

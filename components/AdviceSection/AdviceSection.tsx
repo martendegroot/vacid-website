@@ -37,8 +37,8 @@ const texts: Texts = {
           Omdat je situatie zich kort geleden heeft afgespeeld kunnen
           professionele hulpdiensten jou met voorrang helpen. Als zich een
           heftige gebeurtenis heeft afgespeeld, dan kun je direct met hen
-          contact opnemen. Achteraf horen wij alsnog van je verhaal, zodat we er
-          binnen de danswereld rekening mee kunnen houden.
+          contact opnemen. Achteraf horen wij graag alsnog van je verhaal, zodat
+          we er binnen de danswereld rekening mee kunnen houden.
         </p>
       ),
       questions: [
@@ -352,7 +352,7 @@ const AdviceSection = ({ subject, timeframe }: Props) => {
       <h3
         style={{
           marginTop: 20,
-          marginBottom: 30,
+          marginBottom: 25,
           marginLeft: -15,
           fontSize: 34,
           fontWeight: 500,
