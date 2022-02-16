@@ -3,7 +3,7 @@
   justify-content: center;
   font-family: "Roboto", sans-serif;
   font-weight: bold;
-  height: 100vh;
+  min-height: 100vh;
   align-items: center;
 
   p {
@@ -20,9 +20,11 @@
     .wrapper {
       display: flex;
       flex-direction: column;
+      margin-top: 40px;
 
       @media (min-width: 1024px) {
         flex-direction: row;
+        margin-top: 0;
       }
 
       .content {
