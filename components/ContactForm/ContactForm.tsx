@@ -10,9 +10,16 @@ interface Props {
   includeIntroduction?: boolean;
 }
 
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
 const ContactForm = ({ show, includeIntroduction }: Props) => {
   const [render, setRender] = React.useState(false);
   const [formHasBeenSent, setFormHasBeenSent] = React.useState(false);
+  const [sendingFailed, setSendingFailed] = React.useState(false);
   const [validated, setValidated] = React.useState(false);
 
   const handleSubmit = (event: {
@@ -25,15 +32,20 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
     event.stopPropagation();
 
     if (form.checkValidity() === true) {
-      submitForm();
+      const formData = {
+        name: form.querySelector("input#name").value,
+        email: form.querySelector("input#email").value,
+        message: form.querySelector("textarea#message").value,
+      };
+      submitForm(formData);
     }
 
     setValidated(true);
   };
 
-  const submitForm = () => {
+  const submitForm = (formData: FormData) => {
     setTimeout(() => {
-      sendForm();
+      sendForm(formData);
       setRender(false);
       setTimeout(() => {
         setFormHasBeenSent(true);
@@ -42,18 +54,10 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
     }, 500);
   };
 
-  const sendForm = () => {
-    axios
-      .post("/api/email", {
-        firstName: "Fred",
-        lastName: "Flintstone",
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  const sendForm = (formData: FormData) => {
+    axios.post("/api/email", formData).catch(() => {
+      setSendingFailed(true);
+    });
   };
 
   React.useEffect(() => {
@@ -90,13 +94,16 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
           marginBottom: 25,
         }}
       />
-      {formHasBeenSent ? (
+      {formHasBeenSent && !sendingFailed ? (
         <div style={{ marginTop: 30, paddingBottom: 150 }}>
           Dankjewel voor het insturen van je bericht. Wij zorgen dat je hoe dan
           ook binnen 7 dagen een antwoord van ons hebt ontvangen.
         </div>
       ) : (
         <>
+          {sendingFailed && (
+            <p style={{ fontWeight: 900 }}>Wacht even! Er ging iets fout.</p>
+          )}
           {includeIntroduction && (
             <>
               <p>
@@ -120,7 +127,7 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
             validated={validated}
             onSubmit={handleSubmit}
           >
-            <Form.Group className="mb-3" controlId="formName">
+            <Form.Group className="mb-3" controlId="name">
               <Form.Label>Naam</Form.Label>
               <Form.Control
                 type="text"
@@ -135,7 +142,7 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formEmail">
+            <Form.Group className="mb-3" controlId="email">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -150,7 +157,7 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
               </Form.Control.Feedback>
             </Form.Group>
             <FloatingLabel
-              controlId="floatingTextarea2"
+              controlId="message"
               label="Bericht"
               style={{ margin: "30px 0" }}
             >
@@ -170,6 +177,17 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
             <Button variant="outline-secondary" type="submit">
               Bericht versturen
             </Button>
+            {sendingFailed && (
+              <p
+                style={{
+                  fontWeight: 900,
+                  marginTop: 30,
+                }}
+              >
+                Het verzenden is niet gelukt. Zou je het nog eens kunnen
+                proberen? Wellicht op een later moment?
+              </p>
+            )}
           </Form>
         </>
       )}
