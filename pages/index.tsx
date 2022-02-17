@@ -17,13 +17,6 @@ const Home: NextPage = () => {
                   te maken. Wij kunnen ondersteunen in de afhandeling van vragen of je doorverwijzen naar de juiste
                   instantie.`}
         />
-
-        <link
-          href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;600&family=Roboto:wght@300;400;900&display=swap"
-          rel="stylesheet"
-        />
-
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main id={styles.main}>
@@ -67,8 +60,6 @@ const Home: NextPage = () => {
                 <Image
                   src={dancingPeople}
                   alt="Picture of the author"
-                  width={1000}
-                  height={667}
                   layout="fill"
                   objectFit="cover"
                 />
