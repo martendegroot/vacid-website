@@ -30,10 +30,10 @@ const Home: NextPage = () => {
                 </h2>
                 <p>
                   VaCiD is in het leven geroepen om dansen vrij en vooral veilig
-                  te maken. Als meldpunt voor grensoverschrijdend kun je bij ons
-                  terecht met vragen over de danswereld. Wij kunnen ondersteunen
-                  in de afhandeling daarvan of je doorverwijzen naar de juiste
-                  instantie.
+                  te maken. Als meldpunt voor grensoverschrijdend gedrag kun je
+                  bij ons terecht met vragen over de danswereld. Wij kunnen
+                  ondersteunen in de afhandeling daarvan of je doorverwijzen
+                  naar de juiste instantie.
                 </p>
               </div>
               <div className={styles.cardContainer}>
