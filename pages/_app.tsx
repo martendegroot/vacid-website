@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         />
 
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="images/favicon.ico" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
