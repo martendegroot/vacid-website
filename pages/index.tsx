@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 import logo from "@/images/logo2.png";
-import dancingPeople from "@/images/dancing-people2.jpg";
+import dancingPeople from "@/images/dancing-people3.jpg";
 import NavigationCard from "@/components/NavigationCard/NavigationCard";
 
 const Home: NextPage = () => {
