@@ -122,7 +122,7 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
           )}
 
           <Form
-            style={{ marginTop: 30, paddingBottom: 150 }}
+            style={{ marginTop: 30, paddingBottom: 50 }}
             noValidate
             validated={validated}
             onSubmit={handleSubmit}

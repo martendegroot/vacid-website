@@ -3,7 +3,7 @@
   justify-content: center;
   font-family: "Roboto", sans-serif;
   font-weight: bold;
-  height: 100vh;
+  min-height: 100vh;
 
   .container {
     display: flex;
@@ -14,6 +14,7 @@
     font-size: 17px;
     padding: 30px;
     width: 620px;
+    padding-bottom: 30px;
 
     @media (min-width: 768px) {
       margin-top: 12vh;
