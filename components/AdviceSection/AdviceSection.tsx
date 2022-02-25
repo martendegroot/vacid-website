@@ -52,7 +52,7 @@ const texts: Texts = {
                 kunnen geheel vrijblijvend en vertrouwelijk advies leveren bij
                 jouw situatie. Ook geven zij op hun website al veel bruikbare
                 voorlichting om seksueel overschrijdend gedrag beter te kunnen
-                begrijpen.
+                herkennen.
               </p>
               <p>
                 <a
@@ -75,8 +75,10 @@ const texts: Texts = {
               <p>
                 Het is aan jou of je rechtstreeks contact wil opnemen met deze
                 partijen. Wij waarderen het ontzettend als je bij ons melding
-                wil doen van je klacht, zodat we andere dansers ook goed kunnen
-                beschermen.
+                wil doen van je klacht, zodat wij beter begrijpen wat er speelt.
+                Zo proberen wij volgende situaties te voorkomen en ook andere
+                dansers te beschermen. Jouw melding speelt daar een cruciale rol
+                in.
               </p>
             </>
           ),
@@ -201,8 +203,10 @@ const texts: Texts = {
               <p>
                 Het is aan jou of je rechtstreeks contact wil opnemen met deze
                 partijen. Wij waarderen het ontzettend als je bij ons melding
-                wil doen van je klacht, zodat we andere dansers ook goed kunnen
-                beschermen.
+                wil doen van je klacht, zodat wij beter begrijpen wat er speelt.
+                Zo proberen wij volgende situaties te voorkomen en ook andere
+                dansers te beschermen. Jouw melding speelt daar een cruciale rol
+                in.
               </p>
             </>
           ),
@@ -261,8 +265,10 @@ const texts: Texts = {
               <p>
                 Het is aan jou of je rechtstreeks contact wil opnemen met deze
                 partijen. Wij waarderen het ontzettend als je bij ons melding
-                wil doen van je klacht, zodat we andere dansers ook goed kunnen
-                beschermen.
+                wil doen van je klacht, zodat wij beter begrijpen wat er speelt.
+                Zo proberen wij volgende situaties te voorkomen en ook andere
+                dansers te beschermen. Jouw melding speelt daar een cruciale rol
+                in.
               </p>
             </>
           ),
@@ -319,8 +325,10 @@ const texts: Texts = {
               <p>
                 Het is aan jou of je rechtstreeks contact wil opnemen met deze
                 partijen. Wij waarderen het ontzettend als je bij ons melding
-                wil doen van je klacht, zodat we andere dansers ook goed kunnen
-                beschermen.
+                wil doen van je klacht, zodat wij beter begrijpen wat er speelt.
+                Zo proberen wij volgende situaties te voorkomen en ook andere
+                dansers te beschermen. Jouw melding speelt daar een cruciale rol
+                in.
               </p>
             </>
           ),
