@@ -18,8 +18,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     },
   };
 
-  console.log(config);
-
   const transporter = nodemailer.createTransport(config);
 
   transporter.sendMail(
