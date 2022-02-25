@@ -114,7 +114,7 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
               </p>
               <p>
                 Deze informatie blijft altijd van jou. Daarmee bedoelen we jouw
-                verhaal niet naar komt of gedeeld zal worden zonder jouw
+                verhaal niet naar buiten komt of gedeeld zal worden zonder jouw
                 toestemming. Wij ondernemen dan ook geen actie zonder jou daar
                 eerst in te betrekken.
               </p>
