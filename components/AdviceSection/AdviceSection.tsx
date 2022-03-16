@@ -356,7 +356,10 @@ const AdviceSection = ({ subject, timeframe }: Props) => {
   }, [subject, timeframe]);
 
   return (
-    <div className={classNames(styles.render, { [styles.show]: render })}>
+    <div
+      id="advice-section"
+      className={classNames(styles.render, { [styles.show]: render })}
+    >
       <h3
         style={{
           marginTop: 20,

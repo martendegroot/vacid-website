@@ -9,6 +9,12 @@ const Hulp: NextPage = () => {
   const [subject, setSubject] = React.useState<string | undefined>();
   const [timeframe, setTimeframe] = React.useState<string | undefined>();
 
+  React.useEffect(() => {
+    if (subject && timeframe) {
+      document.getElementById("advice-section")?.scrollIntoView();
+    }
+  }, [subject, timeframe]);
+
   return (
     <div>
       <Head>
