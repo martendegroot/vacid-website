@@ -30,22 +30,21 @@ const Hulp: NextPage = () => {
             </span>{" "}
             | Ik zit ergens mee
           </div>
-          <h2 className={styles.pageTitle}>Wat goed dat je hier bent</h2>
+          <h2 className={styles.pageTitle}>We zijn er voor jou</h2>
           <div style={{ maxWidth: 600, marginBottom: 40 }}>
-            Wij helpen je graag verder in de situatie waar je mee zit. Om je
-            beter te begrijpen hebben we hieronder twee vragen voor je.
+            Om je beter te kunnen helpen hebben we hier twee vragen voor je.
           </div>
           <QuestionSection
             question={"1. Over wie gaat het?"}
             options={[
               { text: "Het gaat over mijzelf", name: "self" },
-              { text: "Ik zag iets gebeuren", name: "other" },
+              { text: "Over iemand anders", name: "other" },
             ]}
             selected={subject}
             setSelected={setSubject}
           />
           <QuestionSection
-            question={"2. Hoe kort geleden is dit gebeurd?"}
+            question={"2. Wanneer is dit gebeurd?"}
             options={[
               { text: "Minder dan 7 dagen geleden", name: "recent" },
               { text: "Meer dan 7 dagen geleden", name: "past" },
