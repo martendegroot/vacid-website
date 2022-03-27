@@ -22,8 +22,14 @@ const Home: NextPage = () => {
           content="Violence and Complaints in Dance | VaCiD"
         />
         <meta
+          property="og:description"
+          content="VaCiD is in het leven geroepen om dansen vrij en vooral veilig
+          te maken. Als meldpunt voor grensoverschrijdend gedrag kun je
+          bij ons terecht met vragen over de danswereld."
+        />
+        <meta
           property="og:image"
-          content="https://www.vacid.nl/android-chrome-192x192.png"
+          content="https://www.vacid.nl/images/logo-social.png"
         />
       </Head>
 
