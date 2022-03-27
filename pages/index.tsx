@@ -17,6 +17,14 @@ const Home: NextPage = () => {
                   te maken. Wij kunnen ondersteunen in de afhandeling van vragen of je doorverwijzen naar de juiste
                   instantie.`}
         />
+        <meta
+          property="og:title"
+          content="Violence and Complaints in Dance | VaCiD"
+        />
+        <meta
+          property="og:image"
+          content="https://www.vacid.nl/android-chrome-192x192.png"
+        />
       </Head>
 
       <main id={styles.main}>
