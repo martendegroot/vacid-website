@@ -38,7 +38,7 @@ const Hulp: NextPage = () => {
             question={"1. Over wie gaat het?"}
             options={[
               { text: "Het gaat over mijzelf", name: "self" },
-              { text: "Over iemand anders", name: "other" },
+              { text: "Het gaat over iemand anders", name: "other" },
             ]}
             selected={subject}
             setSelected={setSubject}
