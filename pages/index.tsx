@@ -58,7 +58,7 @@ const Home: NextPage = () => {
                 />
                 <NavigationCard
                   path="/informatie"
-                  text="Ik zoek informatie"
+                  text="Meer informatie"
                   color="blue"
                 />
               </div>
