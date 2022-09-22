@@ -24,7 +24,7 @@ const Hulp: NextPage = () => {
           <h2 className={styles.pageTitle}>Respect staat voorop</h2>
           <div style={{ maxWidth: 600 }}>
             <p>
-              In de wereld van partnerdans vind veel contact plaats. Aanraking
+              In de wereld van partnerdans vindt veel contact plaats. Aanraking
               is de norm en dat betekent voor iedereen iets anders. Het komt
               helaas voor dat danspartners dit niet goed afstemmen met elkaar.
               Soms worden zelfs bewust grenzen overschreden.
