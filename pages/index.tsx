@@ -108,7 +108,7 @@ const Home: NextPage = () => {
                 >
                   Verinorm
                 </a>
-                .
+                . Invullen van de vragenlijst duurt maar ongeveer 5 minuten.
               </p>
               <a
                 className="btn btn-outline-dark btn-lg mt-3"
