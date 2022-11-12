@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "../styles/Home.module.scss";
 import logo from "@/images/logo2.png";
 import verinormLogo from "@/images/verinorm.png";
