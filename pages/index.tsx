@@ -6,31 +6,42 @@ import logo from "@/images/logo2.png";
 import dancingPeople from "@/images/dancing-people3.jpg";
 import NavigationCard from "@/components/NavigationCard/NavigationCard";
 
+const page = {
+  head: {
+    title: "Violence and Complaints in Dance | VaCiD",
+    meta: [
+      {
+        name: "description",
+        content:
+          "Meldpunt Violence and Complaints in Dance is in het leven geroepen om dansen vrij en vooral veilig te maken. Wij kunnen ondersteunen in de afhandeling van vragen of je doorverwijzen naar de juiste instantie.",
+      },
+      {
+        property: "og:title",
+        content: "Violence and Complaints in Dance | VaCiD",
+      },
+      {
+        property: "og:description",
+        content: `VaCiD is in het leven geroepen om dansen vrij en vooral veilig
+      te maken. Als meldpunt voor grensoverschrijdend gedrag kun je
+      bij ons terecht met vragen over de danswereld.`,
+      },
+      {
+        property: "og:image",
+        content: "https://www.vacid.nl/images/logo-social.png",
+      },
+    ],
+  },
+  body: {},
+};
+
 const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Violence and Complaints in Dance | VaCiD</title>
-        <meta
-          name="description"
-          content={`Meldpunt Violence and Complaints in Dance is in het leven geroepen om dansen vrij en vooral veilig
-                  te maken. Wij kunnen ondersteunen in de afhandeling van vragen of je doorverwijzen naar de juiste
-                  instantie.`}
-        />
-        <meta
-          property="og:title"
-          content="Violence and Complaints in Dance | VaCiD"
-        />
-        <meta
-          property="og:description"
-          content="VaCiD is in het leven geroepen om dansen vrij en vooral veilig
-          te maken. Als meldpunt voor grensoverschrijdend gedrag kun je
-          bij ons terecht met vragen over de danswereld."
-        />
-        <meta
-          property="og:image"
-          content="https://www.vacid.nl/images/logo-social.png"
-        />
+        <title>{page.head.title}</title>
+        {page.head.meta.map((item, i) => (
+          <meta key={i} {...item} />
+        ))}
       </Head>
 
       <main id={styles.main}>
