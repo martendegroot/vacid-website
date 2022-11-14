@@ -12,7 +12,7 @@
   border-radius: 5px;
   transition: box-shadow 0.4s, background-color 1s;
 
-  .text {
+  .label {
     margin-left: 60px;
     color: #333;
     transition: border-bottom-color 1s;
@@ -53,7 +53,7 @@
       background-color: #f7fcff;
     }
 
-    .text {
+    .label {
       &.orange {
         border-bottom-color: rgba(255, 153, 102, 0.6);
       }

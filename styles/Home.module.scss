@@ -35,6 +35,11 @@
         .intro {
           margin: 40px 20px;
 
+          h2 {
+            margin-bottom: 30px;
+            color: #666;
+          }
+
           @media (min-width: 1024px) {
             margin: 80px 50px;
           }
@@ -45,7 +50,7 @@
           flex-direction: column;
           align-items: center;
 
-          & > div {
+          & > a {
             margin-bottom: 30px;
           }
 
@@ -71,6 +76,12 @@
         @media (min-width: 1024px) {
           display: block;
           width: 42%;
+        }
+
+        div {
+          padding: 60px 0 0 40px;
+          position: relative;
+          height: 100%;
         }
       }
     }

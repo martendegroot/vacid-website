@@ -1,100 +1,102 @@
-import type { NextPage } from "next";
-import Head from "next/head";
 import Image from "next/legacy/image";
 import styles from "../styles/Home.module.scss";
 import logo from "@/images/logo2.png";
 import dancingPeople from "@/images/dancing-people3.jpg";
 import NavigationCard from "@/components/NavigationCard/NavigationCard";
+import { ContentfulCollection, createClient } from "contentful";
+import { IHomePage } from "@/types/generated/contentful";
+import LocaleSwitcher from "@/components/LocaleSwitcher/LocaleSwitcher";
+import { useRouter } from "next/router";
+import PageHead from "@/components/PageHead/PageHead";
 
-const page = {
-  head: {
-    title: "Violence and Complaints in Dance | VaCiD",
-    meta: [
-      {
-        name: "description",
-        content:
-          "Meldpunt Violence and Complaints in Dance is in het leven geroepen om dansen vrij en vooral veilig te maken. Wij kunnen ondersteunen in de afhandeling van vragen of je doorverwijzen naar de juiste instantie.",
-      },
-      {
-        property: "og:title",
-        content: "Violence and Complaints in Dance | VaCiD",
-      },
-      {
-        property: "og:description",
-        content: `VaCiD is in het leven geroepen om dansen vrij en vooral veilig
-      te maken. Als meldpunt voor grensoverschrijdend gedrag kun je
-      bij ons terecht met vragen over de danswereld.`,
-      },
-      {
-        property: "og:image",
-        content: "https://www.vacid.nl/images/logo-social.png",
-      },
-    ],
-  },
-  body: {},
-};
+export async function getStaticProps() {
+  const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
 
-const Home: NextPage = () => {
+  if (!CONTENTFUL_SPACE_ID || !CONTENTFUL_ACCESS_TOKEN) {
+    throw Error("No Contentful tokens set");
+  }
+
+  const client = createClient({
+    space: CONTENTFUL_SPACE_ID,
+    accessToken: CONTENTFUL_ACCESS_TOKEN,
+  });
+
+  const res = {
+    nl: await client.getEntries<IHomePage>({
+      content_type: "homePage",
+      locale: "nl-NL",
+      include: 5,
+    }),
+    en: await client.getEntries<IHomePage>({
+      content_type: "homePage",
+      locale: "en-US",
+      include: 5,
+    }),
+  };
+
+  return {
+    props: {
+      pageData: res,
+    },
+  };
+}
+
+interface HomeProps {
+  pageData: {
+    [l in Languages]: ContentfulCollection<IHomePage>;
+  };
+}
+
+enum Languages {
+  en,
+  nl,
+}
+
+const Home = ({ pageData }: HomeProps) => {
+  const { locale } = useRouter();
+  const collection = pageData[locale as unknown as Languages];
+  const { pageHead, title, introduction, navigationCards } =
+    collection.items[0].fields;
+
   return (
     <div>
-      <Head>
-        <title>{page.head.title}</title>
-        {page.head.meta.map((item, i) => (
-          <meta key={i} {...item} />
-        ))}
-      </Head>
+      <PageHead pageHeadData={pageHead} />
 
       <main id={styles.main}>
         <div className={styles.container}>
+          <LocaleSwitcher />
           <div className={styles.wrapper}>
             <div className={styles.content}>
               <Image src={logo} alt="VaCiD logo" width={689} height={242} />
               <div className={styles.intro}>
-                <h2 style={{ marginBottom: 30, color: "#666" }}>
-                  Violence and Complaints in Dance
-                </h2>
-                <p>
-                  VaCiD is in het leven geroepen om dansen vrij en vooral veilig
-                  te maken. Als meldpunt voor grensoverschrijdend gedrag kun je
-                  bij ons terecht met vragen over de danswereld. Wij kunnen
-                  ondersteunen in de afhandeling daarvan of je doorverwijzen
-                  naar de juiste instantie.
-                </p>
+                <h2>{title}</h2>
+                <p>{introduction}</p>
               </div>
               <div className={styles.cardContainer}>
-                <NavigationCard
-                  path="/hulp"
-                  text="Ik zit ergens mee"
-                  color="orange"
-                />
-                <NavigationCard
-                  path="/informatie"
-                  text="Meer informatie"
-                  color="blue"
-                />
+                {navigationCards.map(({ fields }) => (
+                  <NavigationCard key={fields.path} {...fields} />
+                ))}
               </div>
             </div>
-            <div className={styles.imageContainer}>
-              <div
-                style={{
-                  padding: "60px 0 0 40px",
-                  position: "relative",
-                  height: "100%",
-                }}
-              >
-                <Image
-                  src={dancingPeople}
-                  alt="Picture of the author"
-                  layout="fill"
-                  objectFit="cover"
-                />
-              </div>
-            </div>
+            <SideImage />
           </div>
         </div>
       </main>
     </div>
   );
 };
+
+const SideImage = () => (
+  <div className={styles.imageContainer}>
+    <div>
+      <Image
+        src={dancingPeople}
+        alt="Dancing People"
+        layout="fill"
+        objectFit="cover"
+      />
+    </div>
+  </div>
+);
 
 export default Home;
