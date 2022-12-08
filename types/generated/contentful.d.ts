@@ -3,15 +3,18 @@
 import { Asset, Entry } from "contentful";
 import { Document } from "@contentful/rich-text-types";
 
-export interface IAdviceSectionFields {
-  /** Introduction */
-  introduction?: Document | undefined;
+export interface IAdviceFields {
+  /** Title */
+  title: string;
 
-  /** Questions */
-  questions?: IQuestion[] | undefined;
+  /** Responses */
+  responses: IResponse[];
+
+  /** Contact Form */
+  contactForm: IContactForm;
 }
 
-export interface IAdviceSection extends Entry<IAdviceSectionFields> {
+export interface IAdvice extends Entry<IAdviceFields> {
   sys: {
     id: string;
     type: string;
@@ -20,7 +23,136 @@ export interface IAdviceSection extends Entry<IAdviceSectionFields> {
     locale: string;
     contentType: {
       sys: {
-        id: "advice_section";
+        id: "advice";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IContactFormFields {
+  /** Title */
+  title: string;
+
+  /** Introduction */
+  introduction: Document;
+
+  /** Name Label */
+  nameLabel: string;
+
+  /** Name Placeholder */
+  namePlaceholder: string;
+
+  /** NameFeedback */
+  nameFeedback: string;
+
+  /** Name Feedback Invalid */
+  nameFeedbackInvalid: string;
+
+  /** Email Label */
+  emailLabel: string;
+
+  /** Email Placeholder */
+  emailPlaceholder: string;
+
+  /** Email Feedback */
+  emailFeedback: string;
+
+  /** Email Feedback Invalid */
+  emailFeedbackInvalid: string;
+
+  /** Message Label */
+  messageLabel: string;
+
+  /** Message Placeholder */
+  messagePlaceholder: string;
+
+  /** Message Feedback */
+  messageFeedback: string;
+
+  /** Message Feedback Invalid */
+  messageFeedbackInvalid: string;
+
+  /** Button Label */
+  buttonLabel: string;
+
+  /** Feedback Sent */
+  feedbackSent: string;
+
+  /** Feedback Sent Failed */
+  feedbackSentFailed: string;
+
+  /** Sent Failed Notice */
+  sentFailedNotice: string;
+}
+
+export interface IContactForm extends Entry<IContactFormFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "contactForm";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IFoldableQuestionFields {
+  /** Question */
+  question: string;
+
+  /** Answer */
+  answer: string;
+}
+
+export interface IFoldableQuestion extends Entry<IFoldableQuestionFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "foldableQuestion";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IHeaderFields {
+  /** Brand Name */
+  brandName: string;
+
+  /** Page Name */
+  pageName: string;
+
+  /** Page Title */
+  pageTitle: string;
+
+  /** Page Lead */
+  pageLead?: string | undefined;
+}
+
+export interface IHeader extends Entry<IHeaderFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "header";
         linkType: "ContentType";
         type: "Link";
       };
@@ -61,13 +193,13 @@ export interface IHomePage extends Entry<IHomePageFields> {
 
 export interface INavigationCardFields {
   /** Path */
-  path?: string | undefined;
+  path: string;
 
   /** Label */
-  label?: string | undefined;
+  label: string;
 
   /** Color */
-  color?: "orange" | "blue" | undefined;
+  color: "orange" | "blue";
 }
 
 export interface INavigationCard extends Entry<INavigationCardFields> {
@@ -87,7 +219,25 @@ export interface INavigationCard extends Entry<INavigationCardFields> {
   };
 }
 
-export interface IPageFields {}
+export interface IPageFields {
+  /** Name */
+  name?: string | undefined;
+
+  /** Page Head */
+  pageHead: IPageHead;
+
+  /** Header */
+  header: IHeader;
+
+  /** Content */
+  content: (
+    | IAdvice
+    | IContactForm
+    | IFoldableQuestion
+    | IQuestionSection
+    | IText
+  )[];
+}
 
 export interface IPage extends Entry<IPageFields> {
   sys: {
@@ -161,10 +311,10 @@ export interface IPageHeadMeta extends Entry<IPageHeadMetaFields> {
 
 export interface IQuestionFields {
   /** Question */
-  question?: string | undefined;
+  question: string;
 
   /** Answer */
-  answer?: Document | undefined;
+  answer: string;
 }
 
 export interface IQuestion extends Entry<IQuestionFields> {
@@ -184,14 +334,104 @@ export interface IQuestion extends Entry<IQuestionFields> {
   };
 }
 
+export interface IQuestionSectionFields {
+  /** Topic */
+  topic: "subject" | "timeframe";
+
+  /** Question */
+  question: string;
+
+  /** Option | A */
+  optionA: string;
+
+  /** Option | B */
+  optionB: string;
+}
+
+export interface IQuestionSection extends Entry<IQuestionSectionFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "questionSection";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface IResponseFields {
+  /** Subject */
+  subject: "self" | "other";
+
+  /** Timeframe */
+  timeframe: "recent" | "past";
+
+  /** Introduction */
+  introduction: string;
+
+  /** Questions */
+  questions: IQuestion[];
+}
+
+export interface IResponse extends Entry<IResponseFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "response";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
+export interface ITextFields {
+  /** text */
+  text: string;
+}
+
+export interface IText extends Entry<ITextFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "text";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export type CONTENT_TYPE =
-  | "advice_section"
+  | "advice"
+  | "contactForm"
+  | "foldableQuestion"
+  | "header"
   | "homePage"
   | "navigationCard"
   | "page"
   | "pageHead"
   | "pageHeadMeta"
-  | "question";
+  | "question"
+  | "questionSection"
+  | "response"
+  | "text";
 
 export type LOCALE_CODE = "en-US" | "nl-NL";
 

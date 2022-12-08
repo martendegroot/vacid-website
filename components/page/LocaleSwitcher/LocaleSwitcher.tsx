@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import classnames from "classnames";
 import styles from "./LocaleSwitcher.module.scss";
 
-const LocaleSwitcher = () => {
+export const LocaleSwitcher = () => {
   const { locale, locales, asPath, push } = useRouter();
 
   useEffect(() => {
@@ -38,5 +38,3 @@ const LocaleSwitcher = () => {
     </div>
   );
 };
-
-export default LocaleSwitcher;

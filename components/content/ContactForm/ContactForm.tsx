@@ -3,9 +3,10 @@ import axios from "axios";
 import classNames from "classnames";
 import { Button, FloatingLabel, Form } from "react-bootstrap";
 import styles from "./ContactForm.module.scss";
-import { compileString } from "sass";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { IContactFormFields } from "@/types/generated/contentful";
 
-interface Props {
+interface ContactFormProps {
   show: boolean;
   includeIntroduction?: boolean;
 }
@@ -16,7 +17,11 @@ interface FormData {
   message: string;
 }
 
-const ContactForm = ({ show, includeIntroduction }: Props) => {
+export const ContactForm = ({
+  show,
+  includeIntroduction,
+  ...content
+}: ContactFormProps & IContactFormFields) => {
   const [render, setRender] = React.useState(false);
   const [formHasBeenSent, setFormHasBeenSent] = React.useState(false);
   const [sendingFailed, setSendingFailed] = React.useState(false);
@@ -73,19 +78,7 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
 
   return (
     <div className={classNames(styles.render, { [styles.show]: render })}>
-      <h4
-        style={{
-          marginTop: 50,
-          marginBottom: 10,
-          marginLeft: -10,
-          fontSize: 24,
-          fontWeight: 500,
-          color: "#666",
-          fontFamily: `"Roboto", sans-serif`,
-        }}
-      >
-        Contact opnemen
-      </h4>
+      <h4 className={styles.title}>{content.title}</h4>
       <div
         style={{
           height: 3,
@@ -96,29 +89,15 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
       />
       {formHasBeenSent && !sendingFailed ? (
         <div style={{ marginTop: 30, paddingBottom: 150 }}>
-          Dankjewel voor het insturen van je bericht. Wij zorgen dat je hoe dan
-          ook binnen 7 dagen een antwoord van ons hebt ontvangen.
+          {content.feedbackSent}
         </div>
       ) : (
         <>
           {sendingFailed && (
-            <p style={{ fontWeight: 900 }}>Wacht even! Er ging iets fout.</p>
+            <p style={{ fontWeight: 900 }}>{content.sentFailedNotice}</p>
           )}
           {includeIntroduction && (
-            <>
-              <p>
-                Wij staan voor je klaar om je te helpen. Als je contact opneemt
-                met ons dan komt één van onze vertrouwenspersonen binnen 7 dagen
-                bij je terug. Daarna kijken we samen wat de beste vervolgstappen
-                zijn in jouw situatie.
-              </p>
-              <p>
-                Deze informatie blijft altijd van jou. Daarmee bedoelen we jouw
-                verhaal niet naar buiten komt of gedeeld zal worden zonder jouw
-                toestemming. Wij ondernemen dan ook geen actie zonder jou daar
-                eerst in te betrekken.
-              </p>
-            </>
+            <>{documentToReactComponents(content.introduction)}</>
           )}
 
           <Form
@@ -128,54 +107,54 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
             onSubmit={handleSubmit}
           >
             <Form.Group className="mb-3" controlId="name">
-              <Form.Label>Naam</Form.Label>
+              <Form.Label>{content.nameLabel}</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Voer je naam in"
+                placeholder={content.namePlaceholder}
                 required
               />
               <Form.Control.Feedback>
-                Dankjewel voor het invullen
+                {content.emailFeedback}
               </Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
-                Het is nodig dat je je naam invult.
+                {content.emailFeedbackInvalid}
               </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="email">
-              <Form.Label>Email</Form.Label>
+              <Form.Label>{content.emailLabel}</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Voer je email in"
+                placeholder={content.emailPlaceholder}
                 required
               />
               <Form.Control.Feedback>
-                Via dit adres nemen we contact met je op.
+                {content.emailFeedback}
               </Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
-                We hebben een geldig emailadres van je nodig.
+                {content.emailFeedbackInvalid}
               </Form.Control.Feedback>
             </Form.Group>
             <FloatingLabel
               controlId="message"
-              label="Bericht"
+              label={content.messageLabel}
               style={{ margin: "30px 0" }}
             >
               <Form.Control
                 as="textarea"
-                placeholder="Leave a comment here"
+                placeholder={content.messagePlaceholder}
                 style={{ minHeight: 200 }}
                 required
               />
               <Form.Control.Feedback>
-                Je bericht staat genoteerd.
+                {content.messageFeedback}
               </Form.Control.Feedback>
               <Form.Control.Feedback type="invalid">
-                Vergeet niet het bericht in te vullen.
+                {content.messageFeedbackInvalid}
               </Form.Control.Feedback>
             </FloatingLabel>
             <Button variant="outline-secondary" type="submit">
-              Bericht versturen
+              {content.buttonLabel}
             </Button>
             {sendingFailed && (
               <p
@@ -184,8 +163,7 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
                   marginTop: 30,
                 }}
               >
-                Het verzenden is niet gelukt. Zou je het nog eens kunnen
-                proberen? Wellicht op een later moment?
+                {content.feedbackSentFailed}
               </p>
             )}
           </Form>
@@ -194,5 +172,3 @@ const ContactForm = ({ show, includeIntroduction }: Props) => {
     </div>
   );
 };
-
-export default ContactForm;

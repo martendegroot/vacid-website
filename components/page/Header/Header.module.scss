@@ -1,0 +1,33 @@
+.head {
+  color: #aaa;
+
+  .brandName {
+    font-weight: 600;
+    color: rgba(102, 204, 255, 1);
+  }
+}
+
+.title {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: -15px;
+  font-size: 40px;
+  font-weight: 500;
+  color: #666;
+  font-family: "Roboto", "sans-serif";
+
+  @media (min-width: 768px) {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    margin-left: -30px;
+    font-size: 50px;
+  }
+}
+
+.lead {
+  max-width: 600px;
+
+  p {
+    margin: 0;
+  }
+}

@@ -1,0 +1,21 @@
+.render {
+  visibility: hidden;
+  opacity: 0;
+  scroll-margin: 40px;
+  transition: all 0.75s ease-out;
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.title {
+  margin-top: 20px;
+  margin-bottom: 25px;
+  margin-left: -15px;
+  font-size: 34;
+  font-weight: 500;
+  color: #666;
+  font-family: "Roboto", sans-serif;
+}

@@ -1,13 +1,7 @@
-import { IPageHead, IPageHeadMeta } from "@/types/generated/contentful";
+import { IPageHead, IPageHeadFields } from "@/types/generated/contentful";
 import Head from "next/head";
 
-interface PageHeadProps {
-  pageHeadData: IPageHead;
-}
-
-const PageHead = ({ pageHeadData }: PageHeadProps) => {
-  const { pageTitle, meta } = pageHeadData.fields;
-
+export const PageHead = ({ pageTitle, meta }: IPageHeadFields) => {
   const socialImageMeta = {
     property: "og:image",
     content: "https://www.vacid.nl/images/logo-social.png",
@@ -22,5 +16,3 @@ const PageHead = ({ pageHeadData }: PageHeadProps) => {
     </Head>
   );
 };
-
-export default PageHead;

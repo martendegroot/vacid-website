@@ -1,13 +1,11 @@
-import Image from "next/legacy/image";
-import styles from "../styles/Home.module.scss";
-import logo from "@/images/logo2.png";
-import dancingPeople from "@/images/dancing-people3.jpg";
-import NavigationCard from "@/components/NavigationCard/NavigationCard";
-import { ContentfulCollection, createClient } from "contentful";
-import { IHomePage } from "@/types/generated/contentful";
-import LocaleSwitcher from "@/components/LocaleSwitcher/LocaleSwitcher";
 import { useRouter } from "next/router";
-import PageHead from "@/components/PageHead/PageHead";
+import Image from "next/legacy/image";
+import { ContentfulCollection, createClient } from "contentful";
+import { NavigationCard, LocaleSwitcher, PageHead } from "@/components/page";
+import { IHomePage } from "@/types/generated/contentful";
+import dancingPeople from "@/images/dancing-people3.jpg";
+import logo from "@/images/logo2.png";
+import styles from "../styles/Home.module.scss";
 
 export async function getStaticProps() {
   const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
@@ -55,12 +53,16 @@ enum Languages {
 const Home = ({ pageData }: HomeProps) => {
   const { locale } = useRouter();
   const collection = pageData[locale as unknown as Languages];
-  const { pageHead, title, introduction, navigationCards } =
-    collection.items[0].fields;
+  const {
+    pageHead: { fields: pageHeadData },
+    title,
+    introduction,
+    navigationCards,
+  } = collection.items[0].fields;
 
   return (
     <div>
-      <PageHead pageHeadData={pageHead} />
+      <PageHead {...pageHeadData} />
 
       <main id={styles.main}>
         <div className={styles.container}>

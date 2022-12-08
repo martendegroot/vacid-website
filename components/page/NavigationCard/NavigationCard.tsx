@@ -1,14 +1,13 @@
 import Link from "next/link";
 import classnames from "classnames";
 import styles from "./NavigationCard.module.scss";
+import { INavigationCardFields } from "@/types/generated/contentful";
 
-interface Props {
-  path?: string;
-  label?: string;
-  color?: "orange" | "blue";
-}
-
-const NavigationCard = ({ path = "", label = "", color = "orange" }: Props) => (
+export const NavigationCard = ({
+  path,
+  label,
+  color,
+}: INavigationCardFields) => (
   <Link href={path} passHref>
     <div className={classnames(styles.card, styles[color])}>
       <div className={classnames(styles.label, styles[color])}>{label}</div>
@@ -16,5 +15,3 @@ const NavigationCard = ({ path = "", label = "", color = "orange" }: Props) => (
     </div>
   </Link>
 );
-
-export default NavigationCard;
