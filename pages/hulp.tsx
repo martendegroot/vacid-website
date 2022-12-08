@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import { Header, PageHead } from "@/components/page";
 import {
   AdviceSection,
   ContactForm,
@@ -7,7 +8,6 @@ import {
   QuestionSection,
   Text,
 } from "@/components/content";
-import { Header, PageHead } from "@/components/page";
 import { getContentfulData, Languages } from "utils/contentful";
 import { ContentfulCollection } from "contentful";
 import { IPage } from "@/types/generated/contentful";
@@ -61,6 +61,10 @@ const Hulp = ({ pageData }: PageProps) => {
                 const componentName: ComponentName =
                   item.sys.contentType.sys.id;
                 const Component = Components[componentName];
+                if (componentName === "contactForm") {
+                  /*  @ts-ignore:next-line */
+                  item.fields = { ...item.fields, show: true };
+                }
                 /*  @ts-ignore:next-line */
                 return React.createElement(Component, {
                   ...item.fields,

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/Page.module.scss";
+import { useRouter } from "next/router";
 import { Header, PageHead } from "@/components/page";
 import {
   AdviceSection,
@@ -8,10 +8,11 @@ import {
   QuestionSection,
   Text,
 } from "@/components/content";
+import { getContentfulData, Languages } from "utils/contentful";
 import { ContentfulCollection } from "contentful";
 import { IPage } from "@/types/generated/contentful";
-import { useRouter } from "next/router";
-import { getContentfulData, Languages } from "utils/contentful";
+import styles from "../styles/Page.module.scss";
+import { AdviceProvider } from "@/components/context/AdviceContext";
 
 const Components = {
   advice: AdviceSection,
@@ -56,18 +57,24 @@ const Information = ({ pageData }: PageProps) => {
         <div className={styles.container}>
           <Header {...headerContent} />
 
-          <div style={{ maxWidth: 600 }}>
-            {content.map((item, i) => {
-              const componentName: ComponentName = item.sys.contentType.sys.id;
-              const Component = Components[componentName];
-              if (componentName === "contactForm") {
+          <AdviceProvider>
+            <div style={{ maxWidth: 600, marginTop: 40 }}>
+              {content.map((item, i) => {
+                const componentName: ComponentName =
+                  item.sys.contentType.sys.id;
+                const Component = Components[componentName];
+                if (componentName === "contactForm") {
+                  /*  @ts-ignore:next-line */
+                  item.fields = { ...item.fields, show: true };
+                }
                 /*  @ts-ignore:next-line */
-                item.fields = { ...item.fields, show: true };
-              }
-              /*  @ts-ignore:next-line */
-              return React.createElement(Component, { ...item.fields, key: i });
-            })}
-          </div>
+                return React.createElement(Component, {
+                  ...item.fields,
+                  key: i,
+                });
+              })}
+            </div>
+          </AdviceProvider>
         </div>
       </main>
     </div>
