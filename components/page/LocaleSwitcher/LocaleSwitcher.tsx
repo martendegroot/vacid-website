@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import classnames from "classnames";
 import styles from "./LocaleSwitcher.module.scss";
 
-export const LocaleSwitcher = () => {
+export const LocaleSwitcher = ({ pageMapping }: { pageMapping?: any }) => {
   const { locale, locales, asPath, push } = useRouter();
 
   useEffect(() => {
@@ -17,12 +17,16 @@ export const LocaleSwitcher = () => {
     localStorage.setItem("selectedLocale", languageCode);
   };
 
+  const redirectPath = pageMapping
+    ? `/${pageMapping[asPath.replaceAll("/", "")]}/`
+    : asPath;
+
   return (
     <div className={styles.wrapper}>
       {locales?.map((languageCode) => (
         <Link
           key={languageCode}
-          href={asPath}
+          href={redirectPath}
           locale={languageCode}
           onClick={() => storeLocaleSelection(languageCode)}
         >

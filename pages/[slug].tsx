@@ -1,6 +1,5 @@
 import React from "react";
-import { useRouter } from "next/router";
-import { Header, PageHead } from "@/components/page";
+import { Header, LocaleSwitcher, PageHead } from "@/components/page";
 import {
   AdviceSection,
   ContactForm,
@@ -8,9 +7,14 @@ import {
   QuestionSection,
   Text,
 } from "@/components/content";
-import { getContentfulData, Languages } from "utils/contentful";
+import {
+  getContentfulData,
+  getContentfulPageMapping,
+  getContentfulPages,
+  Languages,
+} from "utils/contentful";
 import { ContentfulCollection } from "contentful";
-import { IPage } from "@/types/generated/contentful";
+import { IPage, IPageFields } from "@/types/generated/contentful";
 import styles from "../styles/Page.module.scss";
 import { AdviceProvider } from "@/components/context/AdviceContext";
 
@@ -24,30 +28,51 @@ const Components = {
 
 type ComponentName = keyof typeof Components;
 
-export async function getStaticProps() {
+export const getStaticPaths = async () => {
+  const paths = await getContentfulPages();
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+interface StaticPropsContext {
+  params: { slug: "help" | "hulp" | "informatie" | "information" };
+  locale: "nl" | "en";
+}
+
+export async function getStaticProps({
+  locale,
+  params: { slug },
+}: StaticPropsContext) {
+  const content = (await getContentfulData({
+    type: "page",
+    slug,
+    locale: Languages[locale],
+  })) as ContentfulCollection<IPage>;
+
+  const mapping = await getContentfulPageMapping();
+
   return {
     props: {
-      pageData: await getContentfulData("page"),
+      pageData: { fields: content.items[0].fields, mapping },
     },
   };
 }
 
 interface PageProps {
   pageData: {
-    [l in Languages]: ContentfulCollection<IPage>;
+    fields: IPageFields;
+    mapping: any;
   };
 }
 
-const Information = ({ pageData }: PageProps) => {
-  const { locale } = useRouter();
-  const collection = pageData[locale as unknown as Languages];
+const Page = ({ pageData }: PageProps) => {
   const {
     pageHead: { fields: pageHeadData },
     header: { fields: headerContent },
     content,
-  } = collection.items.find(
-    (page) => page.fields.name === "More information"
-  )!.fields;
+  } = pageData.fields;
 
   return (
     <div>
@@ -55,6 +80,7 @@ const Information = ({ pageData }: PageProps) => {
 
       <main id={styles.main}>
         <div className={styles.container}>
+          <LocaleSwitcher pageMapping={pageData.mapping} />
           <Header {...headerContent} />
 
           <AdviceProvider>
@@ -81,4 +107,4 @@ const Information = ({ pageData }: PageProps) => {
   );
 };
 
-export default Information;
+export default Page;

@@ -1,5 +1,4 @@
 import { IHeaderFields } from "@/types/generated/contentful";
-import { LocaleSwitcher } from "../LocaleSwitcher/LocaleSwitcher";
 import styles from "./Header.module.scss";
 
 export const Header = ({
@@ -9,8 +8,6 @@ export const Header = ({
   pageLead,
 }: IHeaderFields) => (
   <>
-    <LocaleSwitcher />
-
     <div className={styles.head}>
       <span className={styles.brandName}>{brandName}</span> | {pageName}
     </div>

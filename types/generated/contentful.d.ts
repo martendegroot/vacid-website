@@ -223,6 +223,9 @@ export interface IPageFields {
   /** Name */
   name?: string | undefined;
 
+  /** Path */
+  path: string;
+
   /** Page Head */
   pageHead: IPageHead;
 
