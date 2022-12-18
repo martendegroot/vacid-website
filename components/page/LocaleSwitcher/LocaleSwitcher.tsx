@@ -17,10 +17,9 @@ export const LocaleSwitcher = ({ pageMapping }: { pageMapping?: any }) => {
     localStorage.setItem("selectedLocale", languageCode);
   };
 
-  const redirectPath =
-    pageMapping && asPath
-      ? `/${pageMapping[asPath.replaceAll("/", "")]}/`
-      : asPath;
+  const redirectPath = pageMapping
+    ? `/${pageMapping[asPath.replace(/\//g, "")]}/`
+    : asPath;
 
   return (
     <div className={styles.wrapper}>
