@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { ContentfulCollection, createClient } from "contentful";
 import { NavigationCard, LocaleSwitcher, PageHead } from "@/components/page";
 import { IHomePage } from "@/types/generated/contentful";
