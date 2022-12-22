@@ -1,12 +1,16 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { ContentfulCollection, createClient } from "contentful";
-import { NavigationCard, LocaleSwitcher, PageHead } from "@/components/page";
+import {
+  NavigationCard,
+  LocaleSwitcher,
+  PageHead,
+  VerinormBanner,
+} from "@/components/page";
 import { IHomePage } from "@/types/generated/contentful";
 import dancingPeople from "@/images/dancing-people3.jpg";
 import logo from "@/images/logo2.png";
 import styles from "../styles/Home.module.scss";
-import { VerinormBanner } from "@/components/content/VerinormBanner/VerinormBanner";
 
 export async function getStaticProps() {
   const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
@@ -59,6 +63,7 @@ const Home = ({ pageData }: HomeProps) => {
     title,
     introduction,
     navigationCards,
+    banner,
   } = collection.items[0].fields;
 
   return (
@@ -83,7 +88,7 @@ const Home = ({ pageData }: HomeProps) => {
             </div>
             <SideImage />
           </div>
-          <VerinormBanner />
+          {banner && <VerinormBanner {...banner.fields} />}
         </div>
       </main>
     </div>

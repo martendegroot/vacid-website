@@ -172,6 +172,9 @@ export interface IHomePageFields {
 
   /** Navigation Cards */
   navigationCards: INavigationCard[];
+
+  /** Banner */
+  banner?: IVerinormBanner | undefined;
 }
 
 export interface IHomePage extends Entry<IHomePageFields> {
@@ -421,6 +424,37 @@ export interface IText extends Entry<ITextFields> {
   };
 }
 
+export interface IVerinormBannerFields {
+  /** Title */
+  title: string;
+
+  /** Text */
+  text: string;
+
+  /** Button Label */
+  buttonLabel: string;
+
+  /** Button URL */
+  buttonUrl: string;
+}
+
+export interface IVerinormBanner extends Entry<IVerinormBannerFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "verinormBanner";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export type CONTENT_TYPE =
   | "advice"
   | "contactForm"
@@ -434,7 +468,24 @@ export type CONTENT_TYPE =
   | "question"
   | "questionSection"
   | "response"
-  | "text";
+  | "text"
+  | "verinormBanner";
+
+export type IEntry =
+  | IAdvice
+  | IContactForm
+  | IFoldableQuestion
+  | IHeader
+  | IHomePage
+  | INavigationCard
+  | IPage
+  | IPageHead
+  | IPageHeadMeta
+  | IQuestion
+  | IQuestionSection
+  | IResponse
+  | IText
+  | IVerinormBanner;
 
 export type LOCALE_CODE = "en-US" | "nl-NL";
 
