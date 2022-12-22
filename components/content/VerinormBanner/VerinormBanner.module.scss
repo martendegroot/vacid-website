@@ -1,0 +1,15 @@
+.promoWrapper {
+  display: flex;
+  text-align: center;
+  margin: 20px;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    text-align: right;
+  }
+
+  @media (min-width: 1024px) {
+    margin: 160px 40px;
+  }
+}

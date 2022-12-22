@@ -6,6 +6,7 @@ import { IHomePage } from "@/types/generated/contentful";
 import dancingPeople from "@/images/dancing-people3.jpg";
 import logo from "@/images/logo2.png";
 import styles from "../styles/Home.module.scss";
+import { VerinormBanner } from "@/components/content/VerinormBanner/VerinormBanner";
 
 export async function getStaticProps() {
   const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN } = process.env;
@@ -82,6 +83,7 @@ const Home = ({ pageData }: HomeProps) => {
             </div>
             <SideImage />
           </div>
+          <VerinormBanner />
         </div>
       </main>
     </div>
