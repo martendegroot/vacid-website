@@ -6,6 +6,7 @@ import {
   LocaleSwitcher,
   PageHead,
   VerinormBanner,
+  TopBar,
 } from "@/components/page";
 import { IHomePage } from "@/types/generated/contentful";
 import dancingPeople from "@/images/dancing-people3.jpg";
@@ -72,7 +73,7 @@ const Home = ({ pageData }: HomeProps) => {
 
       <main id={styles.main}>
         <div className={styles.container}>
-          <LocaleSwitcher />
+          <TopBar />
           <div className={styles.wrapper}>
             <div className={styles.content}>
               <Image src={logo} alt="VaCiD logo" width={689} height={242} />

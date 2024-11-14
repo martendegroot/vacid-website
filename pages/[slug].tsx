@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, LocaleSwitcher, PageHead } from "@/components/page";
+import { Header, LocaleSwitcher, PageHead, TopBar } from "@/components/page";
 import {
   AdviceSection,
   ContactForm,
@@ -80,7 +80,7 @@ const Page = ({ pageData }: PageProps) => {
 
       <main id={styles.main}>
         <div className={styles.container}>
-          <LocaleSwitcher pageMapping={pageData.mapping} />
+          <TopBar pageMapping={pageData.mapping} />
           <Header {...headerContent} />
 
           <AdviceProvider>

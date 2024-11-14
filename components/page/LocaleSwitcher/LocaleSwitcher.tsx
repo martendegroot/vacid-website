@@ -12,7 +12,7 @@ export const LocaleSwitcher = ({ pageMapping }: { pageMapping?: any }) => {
       : `/${pageMapping[asPath.replace(/\//g, "")]}/`;
 
   return (
-    <div className={styles.wrapper}>
+    <>
       {locales?.map((languageCode) => (
         <Link
           key={languageCode}
@@ -28,6 +28,6 @@ export const LocaleSwitcher = ({ pageMapping }: { pageMapping?: any }) => {
           </div>
         </Link>
       ))}
-    </div>
+    </>
   );
 };

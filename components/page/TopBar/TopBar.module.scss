@@ -1,0 +1,16 @@
+.wrapper {
+  align-self: end;
+  display: flex;
+  flex-direction: row;
+  padding-right: 20px;
+
+  .divider {
+    width: 1px;
+    background-color: #ddd;
+    margin: 10px;
+  }
+
+  @media (min-width: 1100px) {
+    padding-right: 0;
+  }
+}
