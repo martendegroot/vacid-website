@@ -3,7 +3,6 @@ import Image from "next/image";
 import { ContentfulCollection, createClient } from "contentful";
 import {
   NavigationCard,
-  LocaleSwitcher,
   PageHead,
   VerinormBanner,
   TopBar,
@@ -65,6 +64,7 @@ const Home = ({ pageData }: HomeProps) => {
     introduction,
     navigationCards,
     banner,
+    contact,
   } = collection.items[0].fields;
 
   return (
@@ -73,7 +73,7 @@ const Home = ({ pageData }: HomeProps) => {
 
       <main id={styles.main}>
         <div className={styles.container}>
-          <TopBar />
+          <TopBar contactContent={contact} />
           <div className={styles.wrapper}>
             <div className={styles.content}>
               <Image src={logo} alt="VaCiD logo" width={689} height={242} />

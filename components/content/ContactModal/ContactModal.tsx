@@ -4,62 +4,78 @@ import styles from "./ContactModal.module.scss";
 import { WhatsappIcon } from "./WhatsappIcon";
 import { Phone } from "lucide-react";
 import classNames from "classnames";
+import { IContact } from "@/types/generated/contentful";
 
 interface ContactModalProps {
   show: boolean;
   setShow: Dispatch<SetStateAction<boolean>>;
+  content: IContact;
 }
 
-export const ContactModal = ({ show, setShow }: ContactModalProps) => (
-  <Modal
-    centered
-    show={show}
-    fullscreen={"lg-down"}
-    onHide={() => setShow(false)}
-    className={styles.modal}
-  >
-    <Modal.Header closeButton>
-      <Modal.Title className={styles.title}>
-        Prefer to reach out directly?
-      </Modal.Title>
-    </Modal.Header>
-    <Modal.Body className={styles.container}>
-      <p>
-        For a short inquiry and urgent questions you can reach out to us
-        directly through the following options:
-      </p>
-      <CallButton />
-      <div className={styles.divider}>or</div>
-      <WhatsappButton />
-      <p>
-        Both options are available
-        <br /> between 9:00 AM and 9:00 PM.
-      </p>
-    </Modal.Body>
-  </Modal>
-);
+export const ContactModal = ({ show, setShow, content }: ContactModalProps) => {
+  const {
+    fields: {
+      formTitle,
+      formIntroduction,
+      formLinkingExpression,
+      formClosingRemark,
+    },
+  } = content;
 
-const CallButton = () => {
+  return (
+    <Modal
+      centered
+      show={show}
+      fullscreen={"lg-down"}
+      onHide={() => setShow(false)}
+      className={styles.modal}
+    >
+      <Modal.Header closeButton>
+        <Modal.Title className={styles.title}>{formTitle}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body className={styles.container}>
+        <p>{formIntroduction}</p>
+        <CallButton
+          label={content.fields.formPhoneButtonLabel}
+          number={content.fields.formPhoneNumber}
+        />
+        <div className={styles.divider}>{formLinkingExpression}</div>
+        <WhatsappButton
+          label={content.fields.formWhatsappButtonLabel}
+          number={content.fields.formWhatsappNumber}
+        />
+        <p>{formClosingRemark}</p>
+      </Modal.Body>
+    </Modal>
+  );
+};
+
+interface ButtonProps {
+  label: string;
+  number: string;
+}
+
+const CallButton = ({ label, number }: ButtonProps) => {
   var clickHandler = () => {
-    window.open("tel:+<phone>", "_blank", "noopener,noreferrer");
+    window.open(`tel:+${number}`, "_blank", "noopener,noreferrer");
   };
 
   return (
     <BaseButton className={styles.callButton} handler={clickHandler}>
       <Phone strokeWidth={1.5} />
-      Phone
+      {label}
     </BaseButton>
   );
 };
 
-const WhatsappButton = () => {
+const WhatsappButton = ({ label, number }: ButtonProps) => {
   const clickHandler = () => {
-    window.open("https://wa.me/<phone>", "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/${number}`, "_blank", "noopener,noreferrer");
   };
 
   return (
     <BaseButton className={styles.whatsappButton} handler={clickHandler}>
-      <WhatsappIcon size={32} /> Whatsapp
+      <WhatsappIcon size={32} /> {label}
     </BaseButton>
   );
 };

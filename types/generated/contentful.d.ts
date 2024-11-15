@@ -31,6 +31,52 @@ export interface IAdvice extends Entry<IAdviceFields> {
   };
 }
 
+export interface IContactFields {
+  /** Button label */
+  buttonLabel: string;
+
+  /** Form title */
+  formTitle: string;
+
+  /** Form introduction */
+  formIntroduction: string;
+
+  /** Form linking expression */
+  formLinkingExpression: string;
+
+  /** Form closing remark */
+  formClosingRemark: string;
+
+  /** Form phone button label */
+  formPhoneButtonLabel: string;
+
+  /** Form phone number */
+  formPhoneNumber: string;
+
+  /** Form whatsapp button label */
+  formWhatsappButtonLabel: string;
+
+  /** Form whatsapp number */
+  formWhatsappNumber: string;
+}
+
+export interface IContact extends Entry<IContactFields> {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "contact";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+}
+
 export interface IContactFormFields {
   /** Title */
   title: string;
@@ -175,6 +221,9 @@ export interface IHomePageFields {
 
   /** Banner */
   banner?: IVerinormBanner | undefined;
+
+  /** Contact */
+  contact: IContact;
 }
 
 export interface IHomePage extends Entry<IHomePageFields> {
@@ -243,6 +292,9 @@ export interface IPageFields {
     | IQuestionSection
     | IText
   )[];
+
+  /** Contact */
+  contact: IContact;
 }
 
 export interface IPage extends Entry<IPageFields> {
@@ -457,6 +509,7 @@ export interface IVerinormBanner extends Entry<IVerinormBannerFields> {
 
 export type CONTENT_TYPE =
   | "advice"
+  | "contact"
   | "contactForm"
   | "foldableQuestion"
   | "header"
@@ -473,6 +526,7 @@ export type CONTENT_TYPE =
 
 export type IEntry =
   | IAdvice
+  | IContact
   | IContactForm
   | IFoldableQuestion
   | IHeader

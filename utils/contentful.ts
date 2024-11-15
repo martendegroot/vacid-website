@@ -1,5 +1,5 @@
-import { IHomePage, IPage, IPageFields } from "@/types/generated/contentful";
-import { createClient, Entry } from "contentful";
+import { IPage } from "@/types/generated/contentful";
+import { createClient } from "contentful";
 
 export enum Languages {
   en = "en-US",
