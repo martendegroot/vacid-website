@@ -72,6 +72,7 @@ const Page = ({ pageData }: PageProps) => {
     pageHead: { fields: pageHeadData },
     header: { fields: headerContent },
     content,
+    contact,
   } = pageData.fields;
 
   return (
@@ -80,7 +81,7 @@ const Page = ({ pageData }: PageProps) => {
 
       <main id={styles.main}>
         <div className={styles.container}>
-          <TopBar pageMapping={pageData.mapping} />
+          <TopBar contactContent={contact} pageMapping={pageData.mapping} />
           <Header {...headerContent} />
 
           <AdviceProvider>
